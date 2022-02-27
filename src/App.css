@@ -1,38 +1,194 @@
-.App {
-  text-align: center;
+*,
+*::after,
+*::before{
+	box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#root{
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	width: 550px;
+	margin: 50px auto 0;
+	align-items: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+main{
+	display: flex;
+	flex-direction: column;
+	box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%), 0 25px 50px 0 rgb(0 0 0 / 10%);
+	width: 100%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.header{
+	display: relative;
+	width: 100%;	
 }
 
-.App-link {
-  color: #61dafb;
+.header h1{
+	font-size: 70px;
+	font-weight: 200;
+	color: rgba(175, 47, 47, 0.15);
+	margin: 15px auto;
+	text-align: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.inputSetting{
+	display: flex;
+	justify-content: stretch;
+	align-items: center;
+	height: 65px;
+	gap: 4px;
+}
+
+.inputSetting .newTodoInput{
+	flex: 21;
+	height: 100%;
+	color: #4d4d4d;
+	border: none;
+	font-size: 25px;
+}
+
+.inputSetting .newTodoInput::placeholder{
+	color:rgb(0 0 0 / 5%);
+	font-style: italic;
+}
+
+.inputSetting .newTodoInput:focus{
+	outline: none;
+}
+
+.inputSetting button{
+	flex:1.2;
+	height: 100%;
+	border: 0.1px solid transparent;
+	background-color: transparent;
+	font-size: 20px;
+}
+
+.inputSetting .addButton{
+	flex: 2;
+	color: skyblue;
+}
+
+.inputSetting .addButton:active{
+	transform: scale(0.9);
+	background-color: skyblue;
+	color: white;
+}
+
+.inputSetting button:hover{
+	cursor: pointer;
+	border: 0.1px solid black;
+	border-radius: 5px;
+}
+
+.todoList{
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+}
+
+.todoItem{
+	position: relative;
+	display: flex;
+	align-items: stretch;
+	min-height: 50px;
+	font-size: 20px;
+	color: #4d4d4d;
+	border-top: 0.1px solid #4d4d4d;
+	list-style: none;
+	/* transform: translateY(-200px);
+	opacity: 0; */
+	transition: all 1s ease;
+}
+
+/* .show{
+	opacity: 1;
+	transform: translateY(0px);
+	color:blueviolet;
+} */
+
+.todoItem input[type="checkbox"]{
+	flex: 1;
+	align-self: center;
+}
+
+.todoItem input[type="text"]{
+	flex: 15;
+}
+
+.todoItem label{
+	display: flex;
+	align-items: center;
+	flex: 15;
+	cursor: pointer;
+	transition: all 0.6s ease
+}
+
+.todoItem .lineThrough{
+	text-decoration-line: line-through;
+	color: lightsteelblue;
+}
+
+.todoItem button{
+	display: none;
+	position: absolute;
+	right: 0;
+	top: 20%;
+	bottom: 20%;
+	background-color: transparent;
+	border: none;
+}
+
+.todoItem:hover button{
+	display: block;
+	color: crimson;
+}
+.todoItem:hover button:hover{
+	cursor: pointer;
+}
+
+.footer{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;	
+	border-top: 0.1px solid #4d4d4d;
+	height: 30px;
+	padding: 0 10px;
+}
+
+.footer span{
+	font-size: 14px;
+}
+
+.footer div > *{
+	margin: 4px;
+}
+
+.footer button{
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	border: 1px solid transparent;
+	border-radius: 5px;
+}
+
+.footer button:hover{
+	background-color: azure;
+	color:black;
+}
+
+.footer .clearCompleted:hover{
+	color: crimson
+}
+.footer .clearCompleted:active{
+	background-color: crimson;
+	color: white;
+}
+
+.footer .active{
+	border: 1px solid rgb(0 0 0 / 50%);
+	background-color: skyblue;
+	color: white;
 }
