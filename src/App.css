@@ -160,7 +160,16 @@ main{
 }
 
 .footer span{
+	flex: 1;
 	font-size: 14px;
+}
+
+.footer div{
+	flex: 2;
+}
+
+.footer .clearCompleted{
+	flex: 1;
 }
 
 .footer div > *{
