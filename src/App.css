@@ -113,6 +113,7 @@ main{
 .todoItem input[type="checkbox"]{
 	flex: 1;
 	align-self: center;
+	cursor: pointer;
 }
 
 .todoItem input[type="text"]{
@@ -160,7 +161,16 @@ main{
 }
 
 .footer span{
+	flex: 1;
 	font-size: 14px;
+}
+
+.footer div{
+	flex: 2;
+}
+
+.footer .clearCompleted{
+	flex: 1;
 }
 
 .footer div > *{
