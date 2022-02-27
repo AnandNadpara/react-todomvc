@@ -1,4 +1,4 @@
-import React, {useLayoutEffect, useState, useRef, useEffect} from 'react';
+import React, {useState, useRef} from 'react';
 import {InputItem} from './TodoInput';
 // import {todo} from './Model'
 
