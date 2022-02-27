@@ -65,7 +65,7 @@ function App() {
         deleteItem={handleDelete}
         handleEditItem={handleEditItem}
       />
-      {todoList.length ? 
+      {todo.todoList.length ? 
         <Footer
           activeTodos={todo.activeTodos()}
           handleFilter={handleFilter}
