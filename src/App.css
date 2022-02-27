@@ -63,7 +63,8 @@ main{
 	height: 100%;
 	border: 0.1px solid transparent;
 	background-color: transparent;
-	font-size: 20px;
+	font-size: 20px;	
+	cursor: pointer;
 }
 
 .inputSetting .addButton{
@@ -74,13 +75,13 @@ main{
 .inputSetting .addButton:active{
 	transform: scale(0.9);
 	background-color: skyblue;
+	border: 0.1px solid black;
+	border-radius: 5px;
 	color: white;
 }
 
-.inputSetting button:hover{
-	cursor: pointer;
-	border: 0.1px solid black;
-	border-radius: 5px;
+.inputSetting .toggleAll:hover{
+	filter: drop-shadow(1px 1px 1px skyblue);
 }
 
 .todoList{
