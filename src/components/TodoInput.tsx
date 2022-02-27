@@ -1,12 +1,13 @@
 import React, {useState, useRef} from 'react';
 
 interface TodoInputTypes{
+	handletoggleAll: ()=>void,
 	handleSubmit?: (value: string)=>void,
 	setEditing?: (editing: boolean)=>void
 }
 
 const TodoInput = React.memo((props: TodoInputTypes)=>{
-	const {handleSubmit} = props;
+	const {handleSubmit, handletoggleAll} = props;
 	const [input, setInput] = useState('');
 	const inputRef = useRef<HTMLInputElement>(null);
 
@@ -31,7 +32,7 @@ const TodoInput = React.memo((props: TodoInputTypes)=>{
 
 	return (
 		<div className="inputSetting">
-			<button className="toggleAll" onClick={handleClick}>V</button>
+			<button className="toggleAll" onClick={handletoggleAll}>v</button>
 			<input 
 				type="text"
 				className="newTodoInput"

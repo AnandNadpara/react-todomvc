@@ -32,8 +32,8 @@ export default class Todo {
 
 	toggleAll(): void{
 		let counter: number = this.todoList.reduce((x, y) => x + (y.status ? 1 : 0), 0);
-		let flag = false;
-		if(counter === this.todoList.length) flag = true;
+		let flag = true;
+		if(counter === this.todoList.length) flag = false;
 
 		this.todoList.forEach(item => {
 			item.status = flag;

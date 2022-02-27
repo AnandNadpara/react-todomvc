@@ -15,6 +15,11 @@ function App() {
     localStorage.setItem('react-todo', JSON.stringify(todo.todoList));
   })
 
+  const handletoggleAll = React.useCallback(() => {
+    todo.toggleAll();
+    setTodoList([...todo.todoList]);
+  }, [])
+
   const handleSubmit = React.useCallback( (value: string) => {
     todo.addTodo(value);
     setTodoList([...todo.todoList]);
@@ -51,6 +56,7 @@ function App() {
       </header>
       <main>
       <TodoInput 
+        handletoggleAll={handletoggleAll}
         handleSubmit={handleSubmit}
       />
       <TodoList
@@ -59,11 +65,13 @@ function App() {
         deleteItem={handleDelete}
         handleEditItem={handleEditItem}
       />
-      <Footer
-        activeTodos={todo.activeTodos()}
-        handleFilter={handleFilter}
-        handleClear={handleClear}
-      />
+      {todoList.length ? 
+        <Footer
+          activeTodos={todo.activeTodos()}
+          handleFilter={handleFilter}
+          handleClear={handleClear}
+        />
+      : ''}
       </main>
     </>
   );
