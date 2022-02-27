@@ -46,13 +46,13 @@ const TodoInput = React.memo((props: TodoInputTypes)=>{
 	)
 })
 
-interface InputItem{
+interface InputItemProps{
 	text: string,
 	setEditing: (editing: boolean)=>void,
 	handleEditing: (newValue: string)=>void,
 }
 
-function InputItem(props: InputItem){
+function InputItem(props: InputItemProps){
 	const {text='', setEditing, handleEditing} = props;
 	const [input, setInput] = useState(text)
 
