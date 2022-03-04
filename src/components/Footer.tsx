@@ -1,23 +1,22 @@
 import React from 'react';
+import {useTodoContext} from './hooks'
 
-interface FooterTypes{
-	handleFilter: (mode: string) => void,
-	handleClear: () => void,
-	activeTodos: number
+interface footerProps{
+	activeTodos: number,
 }
 
-let Footer = (props: FooterTypes) => {
-	const {activeTodos, handleFilter,handleClear} = props;
-	const [active, setActive] = React.useState('All');
+const Footer = (props: footerProps) => {
+	const {activeTodos} = props
+	const {viewMode, setViewMode, clearCompleted} = useTodoContext()
 	return (
 		<footer className="footer">
 			<span>{activeTodos} items left</span>
 			<div>
-				<button className={active==='All' ? 'active': ''} onClick={()=>{setActive('All');handleFilter("All")}}>All</button>
-				<button className={active==='Active' ? 'active': ''} onClick={()=>{setActive("Active");handleFilter("Active")}}>Active</button>
-				<button className={active==='Completed' ? 'active': ''} onClick={()=>{setActive("Completed"); handleFilter("Completed")}}>Completed</button>
+				<button className={viewMode==='All' ? 'active': ''} onClick={()=>{setViewMode('All')}}>All</button>
+				<button className={viewMode==='Active' ? 'active': ''} onClick={()=>{setViewMode('Active')}}>Active</button>
+				<button className={viewMode==='Completed' ? 'active': ''} onClick={()=>{setViewMode('Completed')}}>Completed</button>
 			</div>
-			<button className="clearCompleted" onClick={handleClear}>Clear Completed</button>
+			<button className="clearCompleted" onClick={() => clearCompleted()}>Clear Completed</button>
 		</footer>
 	)
 }
