@@ -1,61 +1,30 @@
-import React, {useState, useRef} from 'react';
-import {InputItem} from './TodoInput';
-// import {todo} from './Model'
+import React from 'react';
+import {useTodoContext} from './hooks'
 
 interface todoItemTypes{
 	id: number,
 	todoItem: string,
 	status: boolean,
-	deleteItem: (todoId: number) => void,
-	toggleItem: (todoId: number) => void,
-	handleEditItem: (todoId: number, newValue: string) => void,
 }
 
 const TodoItem = (props: todoItemTypes) => {
-	const [editing, setEditing] = useState(false);
-	const itemRef = useRef(null);
-	const {id, todoItem, status, deleteItem, toggleItem, handleEditItem} = props;
-
-	function handleDbClick(flag: boolean){
-		setEditing(flag);
-	}
-
-	function handleEditing(newValue: string){
-		handleEditItem(id, newValue);
-	}
-
-	// useEffect(()=>{
-	// 	if(itemRef.current){
-	// 		(itemRef.current as HTMLElement).classList.add('show');
-	// 	}
-	// },[])
+	const {id, todoItem, status} = props;
+	const {deleteTodo, toggleTodo} = useTodoContext()
 
 	return (
-		<li className="todoItem" key={id} ref={itemRef}>
+		<li className="todoItem" key={id}>
 			<input 
 				type="checkbox"
 				checked={status}
-				onChange={()=>toggleItem(id)}
+				onChange={()=>toggleTodo(id)}
 			/>
-			{ !editing &&
-				(<>
-					<label 
-						className={status ? 'lineThrough' : ''}
-						onClick={()=>toggleItem(id)}
-						onDoubleClick={()=>handleDbClick(true)}
-					>
-						{todoItem}
-					</label>
-					<button onClick={()=>deleteItem(id)}>X</button>
-				</>)
-			}
-			{ editing &&
-				<InputItem
-					text={todoItem}
-					setEditing={setEditing}
-					handleEditing={handleEditing}
-				/>
-			}
+			<label 
+				className={status ? 'lineThrough' : ''}
+				onClick={()=>toggleTodo(id)}
+			>
+				{todoItem}
+			</label>
+			<button onClick={()=>deleteTodo(id)}>X</button>
 		</li>
 	)
 }

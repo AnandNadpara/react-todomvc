@@ -1,22 +1,15 @@
-import React, {useState, useRef} from 'react';
+import React, {useState} from 'react'
+import {useTodoContext} from './hooks'
 
-interface TodoInputTypes{
-	handletoggleAll: ()=>void,
-	handleSubmit?: (value: string)=>void,
-	setEditing?: (editing: boolean)=>void
-}
-
-const TodoInput = React.memo((props: TodoInputTypes)=>{
-	const {handleSubmit, handletoggleAll} = props;
-	const [input, setInput] = useState('');
-	const inputRef = useRef<HTMLInputElement>(null);
-
-
+const TodoInput = React.memo(() => {
+	const {addTodo, toggleAll} = useTodoContext()
+	const [input, setInput] = useState('')
+	
 	const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-		if(e.keyCode === 13 && input.trim()){	
-			handleSubmit?.(input.trim())
-			setInput('');	
-    }
+		if(e.keyCode !== 13 || !input.trim()) return
+
+    handleClick()	
+    setInput('')
 	}
 
 	function handleChange(e: React.ChangeEvent<HTMLInputElement>){
@@ -25,19 +18,19 @@ const TodoInput = React.memo((props: TodoInputTypes)=>{
 	}
 
 	function handleClick(){
-		if(inputRef.current?.value.trim())
-		handleSubmit?.(inputRef.current.value.trim());
+		if(!input.trim()) return
+
+		addTodo(input.trim())
 		setInput('');
 	}
 
 	return (
 		<div className="inputSetting">
-			<button className="toggleAll" onClick={handletoggleAll}>v</button>
+			<button className="toggleAll" onClick={() => toggleAll()}>v</button>
 			<input 
 				type="text"
 				className="newTodoInput"
 				placeholder='What needs to be done?'
-				ref={inputRef}
 				value={input}
 				onChange={(e)=>handleChange(e)}
 				onKeyDown={(e)=>handleKeyDown(e)}

@@ -1,27 +1,22 @@
-import {todo} from './Model';
 import React from 'react';
+import {todo} from './hooks';
 import TodoItem from './TodoItem';
 
 interface todoListTypes{
-	todoList: todo[],
-	deleteItem: (todoId: number) => void,
-	toggleItem: (todoId: number) => void,
-	handleEditItem: (todoId: number, newValue: string) => void,
+	filteredTodoList: todo[],
 }
 
 const TodoList = (props: todoListTypes) => {
-	const {todoList, deleteItem, toggleItem, handleEditItem} = props;
+	const {filteredTodoList} = props;
+
 	return (		
 		<div className="todoList">
-			{todoList.map(item =>
+			{filteredTodoList.map(item =>
 				<TodoItem 
 					key={item.id}
 					id={item.id}
-					toggleItem={toggleItem}
 					todoItem={item.item}
 					status={item.status}
-					deleteItem={deleteItem}
-					handleEditItem={handleEditItem}
 				/>
 			)}
 		</div>
